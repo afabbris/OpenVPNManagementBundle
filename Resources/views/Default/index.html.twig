@@ -1,5 +1,5 @@
 
-{% extends '::base.html.twig' %}
+{% extends '::layout.html.twig' %}
 {% block meta %}
 {{parent()}}
 <meta http-equiv='refresh' content='{{openvpn_conf_reload*60}}' />
@@ -9,31 +9,39 @@
 
 <div class="openvpn_info_main">
 {% for serveur in serveurs %}
-	<h2>{{serveur.name}}</h2>
-	<table class="table_openvpn_info">
-		<thead>
-			<tr>
-			{% for th in serveur.header %}
-				<th>{{th}}</th>
-			{% endfor %}
-			<th> Action</th>
-			</tr>
-		</thead>
-	{% for client in serveur.clients %} 
-	<tr>
-		<td>{{client[0]}}</td>
-		<td>{{client[1]}}</td>
-		<td>{{client[2]}}</td>
-		<td>{{client[3]}}</td>
-		<td>{{client[4]}}</td>
-		<td>{{client[5]}}</td>
-		<td>{{client[6]}}</td>
-		<td><a href="{{url('openvpn_web_int_kill', {numSer: serveur.key, cn: client[1]})}}">Disconnect</a></td>
-	</tr>
-	{% endfor %}
-	
-	</table>
-	<br />
+	{% if serveur.result == true %}
+		<h2>{{serveur.name}}</h2>
+		<table class="table_openvpn_info">
+			<thead>
+				<tr>
+				{% for th in serveur.header %}
+					<th>{{th}}</th>
+				{% endfor %}
+				<th> Action</th>
+				</tr>
+			</thead>
+		{% for client in serveur.clients %} 
+		<tr>
+			<td>{{client[0]}}</td>
+			<td>{{client[1]}}</td>
+			<td>{{client[2]}}</td>
+			<td>{{client[3]}}</td>
+			<td>{{client[4]}}</td>
+			<td>{{client[5]}}</td>
+			<td>{{client[6]}}</td>
+			<td><a href="{{url('openvpn_web_int_kill', {numSer: serveur.key, cn: client[1]})}}">Disconnect</a></td>
+		</tr>
+		{% endfor %}
+		
+		</table>
+		<br />
+	{% else %}
+	<div class="error_openvpn">
+		
+		Impossible to connect to {{serveur.name}}
+	</div>
+	<br/>
+	{% endif %}
 {% endfor %}
 </div>
 <br />

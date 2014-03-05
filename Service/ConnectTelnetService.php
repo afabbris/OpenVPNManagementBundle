@@ -40,10 +40,9 @@ class ConnectTelnetService{
 		$vpn_port = $this->openvpn_conf[$numS]['telnet_port'];
 		$vpn_password = $this->openvpn_conf[$numS]['telnet_password'];
 		// -----------------------------
-		$fp = fsockopen($vpn_host, $vpn_port, $errno, $errstr, 30);
+		$fp = @fsockopen($vpn_host, $vpn_port, $errno, $errstr, 3);
 		if (!$fp) {
-		    echo "$errstr ($errno)<br />\n";
-		    exit;
+			return false;
 		}
 		
 		fwrite($fp, $vpn_password."\n\n\n");
@@ -75,11 +74,10 @@ class ConnectTelnetService{
 		$vpn_password = $this->openvpn_conf[$numS]['telnet_password'];
 
 		
-		$fp = fsockopen($vpn_host, $vpn_port, $errno, $errstr, 30);
+		$fp = @fsockopen($vpn_host, $vpn_port, $errno, $errstr, 3);
 		if (!$fp) {
-		    echo "$errstr ($errno)<br />\n";
-		    exit;
-		}
+			 return  array('result' => false,  'name' => $vpn_name);
+	}
 		
 		fwrite($fp, $vpn_password."\n\n\n");
 		usleep(250000);
@@ -121,7 +119,7 @@ class ConnectTelnetService{
 		'left');
 		
 		fclose($fp);
-		return array('header' =>$headers,'clients' => $clients, 'name' => $vpn_name, 'key' => $numS);
+		return array('result' => true, 'header' =>$headers,'clients' => $clients, 'name' => $vpn_name, 'key' => $numS);
 	}
 
 	public function getInfoAllServeur(){
