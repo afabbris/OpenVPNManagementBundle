@@ -4,7 +4,6 @@ OpenVPNManagementBundle
 This bundle will create a web interface to a telnet interface of an OpenVPN server, for Symfony Application. This interface will show all the user connected to a VPN server and you wil also have the possibility to log out user.
 
 Installation
-
 ------------
 
 
