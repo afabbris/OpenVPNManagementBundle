@@ -19,7 +19,7 @@ Then you will need a composer update:
 Dont forget to add the Bundle to the kernel
 
 	//app/AppKernel.php
-	new Yunai39\Bundle\SimpleLdapBundle\SimpleLdapBundle(),
+	new Yunai39\Bundle\OpenVPNManagementBundle\OpenVPNManagementBundle(),
 
 
 And also add the following routing:
@@ -35,10 +35,10 @@ You can add multiple server, but you need to add a list one. Your OpenVPN server
 
     openvpn.servers: 
     	1:
-			ip: 192.168.0.149
-			name: OpenVPN - 1
-			telnet_port: 7050
-			telnet_password: azerty
+			ip: ip.to.openvpn.server
+			name: server name
+			telnet_port: your_port
+			telnet_password: *****
 	openvpn.conf.reload: 5 # Every 5 minutes the page will be reloaded
 
 You will also need to add openvpn.conf.reload as a twig global like this
@@ -51,3 +51,9 @@ As for custom css, the main div containing the information about, every single s
 For the page to be relod every time to create a base.html.twig who has a meta block as the index extends  '::base.html.twig'
 
 The to access you server info go to the page /openvpn/infoS. 
+
+TODO
+----
+
+Error Handling
+Add with or withour a password
