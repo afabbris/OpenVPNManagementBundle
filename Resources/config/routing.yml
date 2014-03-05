@@ -1,0 +1,7 @@
+openvpn_web_int_index:
+    pattern:  /infoS
+    defaults: { _controller: OpenVPNManagementBundle:Default:index }
+
+openvpn_web_int_kill:
+    pattern:  /killUser/{numSer}/{cn}
+    defaults: { _controller: OpenVPNManagementBundle:Default:kill }

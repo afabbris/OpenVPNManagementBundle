@@ -1,0 +1,4 @@
+parameters:
+    connect_telnet.class: Yunai39\Bundle\OpenVPNManagementBundle\Service\ConnectTelnetService
+
+

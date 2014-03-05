@@ -1,0 +1,41 @@
+
+{% extends '::base.html.twig' %}
+{% block meta %}
+<meta http-equiv='refresh' content='60' />
+{% endblock %}
+{% block body %}
+
+
+
+{% for serveur in serveurs %}
+	<h2>{{serveur.name}}</h2>
+	<table id="table_js">
+		<thead>
+			<tr>
+			{% for th in serveur.header %}
+				<th>{{th}}</th>
+			{% endfor %}
+			<th>Action</th>
+			</tr>
+		</thead>
+	{% for client in serveur.clients %} 
+	<tr>
+		<td>{{client[0]}}</td>
+		<td>{{client[1]}}</td>
+		<td>{{client[2]}}</td>
+		<td>{{client[3]}}</td>
+		<td>{{client[4]}}</td>
+		<td>{{client[5]}}</td>
+		<td>{{client[6]}}</td>
+		<td><a href="{{url('openvpn_web_int_kill', {numSer: serveur.key, cn: client[1]})}}"><i class=" icon-remove-circle"></i></a></td>
+	</tr>
+	{% endfor %}
+	
+	</table>
+{% endfor %}
+<br />
+<p style="text-align:center;margin:20px;">Cette page est rechargé toutes les minutes.<br />Dernière mise à jour:{{ "now"|date("Y-m-d H:i:s") }} 
+
+{% endblock %}
+
+

@@ -1,0 +1,14 @@
+{
+    "name": "yunai39/openvpn-management-bundle",
+    "description":  "This bundle provides an Web interface to OpenVPN Management interface throught Telnet",
+    "keywords":     ["openvpn","web",'management'],
+    "type":         "symfony-bundle",
+    "version": "1.0",
+    "require": {
+        "php": ">=5.2.4"
+    },
+    "autoload":     {
+        "psr-0": { "Yunai39\\Bundle\\OpenVPNManagementBundle": "" }
+    },
+    "target-dir": "Yunai39/Bundle/OpenVPNManagementBundle"
+}
