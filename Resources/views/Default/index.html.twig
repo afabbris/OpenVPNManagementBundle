@@ -1,20 +1,22 @@
 
 {% extends '::base.html.twig' %}
 {% block meta %}
-<meta http-equiv='refresh' content='60' />
+{{parent()}}
+<meta http-equiv='refresh' content='{{openvpn_conf_reload*60}}' />
 {% endblock %}
 {% block body %}
 
 
-
+<div class="openvpn_info_main">
 {% for serveur in serveurs %}
 	<h2>{{serveur.name}}</h2>
-	<table id="table_js">
+	<table class="table_openvpn_info">
 		<thead>
 			<tr>
 			{% for th in serveur.header %}
 				<th>{{th}}</th>
 			{% endfor %}
+			<th> Action</th>
 			</tr>
 		</thead>
 	{% for client in serveur.clients %} 
@@ -26,15 +28,18 @@
 		<td>{{client[4]}}</td>
 		<td>{{client[5]}}</td>
 		<td>{{client[6]}}</td>
-		<td><a href="{{url('openvpn_web_int_kill', {numSer: serveur.key, cn: client[1]})}}"><i class=" icon-remove-circle"></i></a></td>
+		<td><a href="{{url('openvpn_web_int_kill', {numSer: serveur.key, cn: client[1]})}}">Disconnect</a></td>
 	</tr>
 	{% endfor %}
 	
 	</table>
+	<br />
 {% endfor %}
+</div>
 <br />
-<p style="text-align:center;margin:20px;">Cette page est rechargé toutes les minutes.<br />Dernière mise à jour:{{ "now"|date("Y-m-d H:i:s") }} 
-
+<div class="openvpn_info_bottom">
+<p>This page will be reloaded every {{openvpn_conf_reload}} minutes <br />Last update:{{ "now"|date("Y-m-d H:i:s") }} 
+</div>
 {% endblock %}
 
 
