@@ -1,7 +1,7 @@
 {
     "name": "yunai39/openvpn-management-bundle",
     "description":  "This bundle provides an Web interface to OpenVPN Management interface throught Telnet",
-    "keywords":     ["openvpn","web",'management'],
+    "keywords":     ["openvpn","web","management"],
     "type":         "symfony-bundle",
     "version": "1.0",
     "require": {
